@@ -1,43 +1,29 @@
 /* main.c - мигание LED1 (PB0) на NUCLEO-F767ZI */
 
-// #include "main.h"
 #include "stm32f767xx.h"
-//#include "stm32f7xx_hal.h"
-// #include "stm32f7xx_hal_gpio.h"
 #include "gpio.h"
 
 /* Прототипы функций */
 void SystemClock_Config(void);
 
 
-/**
- * @brief  Главная функция
- */
 int main(void)
 {
-    /* Инициализация HAL библиотеки */
     HAL_Init();
     
-    /* Настройка системного тактирования (216 МГц) */
     SystemClock_Config();
     
-    /* Инициализация GPIO */
     MX_GPIO_Init();
     
-    /* Основной цикл - мигание LED1 (PB0) */
     while (1)
     {
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);   // LED1 включен
-        HAL_Delay(500);                                         // ждём 500 мс
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET); // LED1 выключен
-        HAL_Delay(500);                                         // ждём 500 мс
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);   
+        HAL_Delay(500);                                         
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+        HAL_Delay(500);                                         
     }
 }
 
-/**
- * @brief  Настройка системного тактирования
- * @note   Настраивает PLL на 216 МГц от внешнего кварца 8 МГц
- */
 void SystemClock_Config(void)
 {
     RCC_OscInitTypeDef RCC_OscInitStruct = {0};
