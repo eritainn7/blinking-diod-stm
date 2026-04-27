@@ -1,9 +1,9 @@
 /* main.c - мигание LED1 (PB0) на NUCLEO-F767ZI */
 
-#include "main.h"
+// #include "main.h"
 #include "stm32f767xx.h"
-#include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_gpio.h"
+//#include "stm32f7xx_hal.h"
+// #include "stm32f7xx_hal_gpio.h"
 #include "gpio.h"
 
 /* Прототипы функций */
