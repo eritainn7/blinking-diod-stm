@@ -13,14 +13,20 @@ int main(void)
     
     SystemClock_Config();
     
+    __HAL_RCC_GPIOB_CLK_ENABLE();  // Для LED на PB0
+    __HAL_RCC_GPIOC_CLK_ENABLE();  // Для кнопки на PC13
+
     MX_GPIO_Init();
     
     while (1)
     {
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);   
-        HAL_Delay(500);                                         
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
-        HAL_Delay(500);                                         
+        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET) {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);   
+        } else {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+        }
+                        
+        HAL_Delay(50);                          
     }
 }
 
